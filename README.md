@@ -13,7 +13,7 @@
 
 ## 下载即用
 
-1. 右上角 **Code → Download ZIP**（或者 `git clone https://github.com/CLOUD02142/c-learn-studio.git`）；
+1. 从 [**Releases**](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.0.zip`（也可以右上角 Code → Download ZIP，或 `git clone`）；
 2. 解压，双击 `启动.bat`；
 3. 浏览器自动打开 `http://127.0.0.1:7788`，可以开始写代码了。
 
