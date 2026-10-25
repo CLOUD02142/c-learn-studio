@@ -3,7 +3,7 @@
 一个跑在本机的 C 语言 + 数据结构学习台。界面仿 VS Code Dark+，代码**真编译真执行**（调用本机 gcc），
 不联网也能用；联网只是可选项——挂一个自己的 API Key，AI 才会在旁边帮你讲错。
 
-> 本地学习台 · v1.2
+> 本地学习台 · v1.2.1
 > 62 个知识点 / 34 道练习题（其中 5 道跑多组用例）/ 19 个可视化演示（334 帧）
 > 62 张白话定义卡 / 30 条报错翻译规则 / 34 条结构约束 / 55 项界面自检
 
@@ -11,25 +11,31 @@
 ![多用例判题](shots/23-judge.png)
 ![环境自检](shots/24-env.png)
 
-## 下载即用
+## 下载即用（Windows 10 / 11）
 
-1. 从 [**Releases**](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.0.zip`（也可以右上角 Code → Download ZIP，或 `git clone`）；
-2. 解压，双击 `启动.bat`；
-3. 浏览器自动打开 `http://127.0.0.1:7788`，可以开始写代码了。
+只需要一次性装两个东西：**Node.js 18+** 和 **gcc**。逐步骤、带截图和常见报错的版本在 **[INSTALL.md](INSTALL.md)**。
 
-没有 Node 或 gcc 也能先打开看教程——程序会跳出一张「环境自检」清单，告诉你缺什么、怎么装。
+```powershell
+winget install --id OpenJS.NodeJS.LTS -e
+winget install --id BrechtSanders.WinLibs.POSIX.UCRT -e
+```
+
+> 装完**关掉所有窗口重开**（PATH 是启动时读的）。没有 winget 就看 [INSTALL.md](INSTALL.md) 里的手动安装。
+
+1. 从 [**Releases**](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.1.zip`
+   （也可以右上角 Code → Download ZIP，或 `git clone`）；
+2. 解压到普通目录（例如 `D:\C-Learn-Studio`，别放 `C:\Program Files`）；
+3. 双击 **`启动.bat`**，浏览器自动打开 `http://127.0.0.1:7788`；
+4. 点左侧盾牌图标 → **环境自检**，四项全绿就能写代码了。有 ✗ 的项，页面上直接给了修复命令。
+
+没装 gcc 也能先打开看教程、写代码、看演示，只是跑不起来——程序会明确告诉你缺什么。
 
 ## 怎么启动
 
 双击 `启动.bat`（或在目录里执行 `node server.js`）。浏览器会自动打开，端口默认 7788，
 被占用时自动往后顺延，服务那边会打开正确的地址。关掉黑窗口就是退出。
 
-## 需要什么
-
-- **Node.js 18+**（零依赖，不用 npm install）
-- **gcc**（MinGW-w64 / WinLibs / TDM-GCC 都行）。装好加入 PATH，或让程序自己到常见路径里找。
-- 没有 gcc 也能看教程、写代码、搜知识点、看演示，只是跑不起来 —— 界面会明确告诉你缺什么。
-- AI 改错是**可选**的，不配也完全能用。
+AI 改错是**可选**的：自带 API Key，Key 只存浏览器本地，不配也完全能用。
 
 ## 目录
 
@@ -39,6 +45,7 @@ server.js          本地服务（静态托管 + gcc 编译 + 判题 + AI 代理
 public/            前端：界面、教程数据、判题引擎、报错翻译、可视化渲染
 assets/trace.h     演示用的打帧头文件（tr_begin / tr_mem / tr_end …）
 tools/             自检脚本：内容、判题用例、演示帧、规则表、界面
+INSTALL.md         详细安装步骤与常见报错
 shots/             界面截图
 ```
 
