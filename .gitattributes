@@ -1,6 +1,6 @@
 # Windows 批处理必须以 CRLF 落盘，否则从 GitHub 下载的 ZIP 里可能是 LF
-*.bat text eol=crlf
-*.cmd text eol=crlf
+*.bat -text
+*.cmd -text
 
 # 文本
 *.js text
