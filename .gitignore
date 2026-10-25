@@ -1,0 +1,14 @@
+# 宣传片与渲染中间产物（体积太大，不随仓库分发）
+promo/
+
+# 运行时生成
+.port
+node_modules/
+*.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

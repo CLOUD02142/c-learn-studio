@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C-Learn Studio · C 语言与数据结构</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ══════════════ 标题栏 ══════════════ -->
+  <header class="titlebar">
+    <div class="tb-left">
+      <span class="brand">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 2.5h4l1.5 2h5.5v9h-11z" fill="none" stroke="#519aba" stroke-width="1.2"/><path d="M4.6 8.2h2.2M4.6 10.4h4.4" stroke="#519aba" stroke-width="1.1"/></svg>
+        <span>C-Learn Studio</span>
+      </span>
+      <nav class="menus">
+        <button class="menu-item" data-menu="file">文件</button>
+        <button class="menu-item" data-menu="edit">编辑</button>
+        <button class="menu-item" data-menu="view">视图</button>
+        <button class="menu-item" data-menu="run">运行</button>
+        <button class="menu-item" data-menu="help">帮助</button>
+      </nav>
+    </div>
+    <div class="tb-center" id="titleHint">数据结构与 C 语言 · 本地交互学习台</div>
+    <div class="tb-right">
+      <button class="icon-btn" id="btnGcc" title="编译器状态">
+        <svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 5.2v5.6M5.2 8h5.6" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+      <button class="icon-btn" id="btnHelp" title="使用说明">
+        <svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M6.2 6.1a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1v.4" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="11.6" r=".8" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="body">
+    <!-- ══════════════ 活动栏 ══════════════ -->
+    <div class="activity">
+      <button class="act-btn active" data-view="explorer" title="课程大纲 (Ctrl+Shift+E)">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 3.5h6l2 2.5h8v14H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 11h9M7.5 14h9M7.5 17h5.5" stroke="currentColor" stroke-width="1.4"/></svg>
+      </button>
+      <button class="act-btn" data-view="search" title="搜索 / 提问 (Ctrl+Shift+F)">
+        <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <button class="act-btn" data-view="exercises" title="练习题">
+        <svg width="22" height="22" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12.2l2.6 2.6L16 9.4" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+      </button>
+      <button class="act-btn" data-view="progress" title="学习进度与路线">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="7" y="12" width="3" height="7" fill="currentColor" opacity=".85"/><rect x="12" y="8" width="3" height="11" fill="currentColor" opacity=".6"/><rect x="17" y="14" width="3" height="5" fill="currentColor" opacity=".4"/></svg>
+      </button>
+      <div class="act-spacer"></div>
+      <button class="act-btn" data-view="env" title="环境自检：编译器能不能真的跑起来">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.2-2.9 7.6-7 9.5-4.1-1.9-7-5.3-7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.6 12.2l2.4 2.4 4.4-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="act-btn" data-view="settings" title="设置">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 12h4M12 12h8M4 17h12M20 17h0" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="16" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+
+    <!-- ══════════════ 侧边栏 ══════════════ -->
+    <aside class="sidebar" id="sidebar">
+      <!-- 课程大纲 -->
+      <section class="view" id="view-explorer">
+        <div class="view-head"><span>课程大纲</span>
+          <div class="view-head-actions">
+            <button class="icon-btn sm" id="btnExpandAll" title="全部展开">
+              <svg width="13" height="13" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+            <button class="icon-btn sm" id="btnCollapseAll" title="全部折叠">
+              <svg width="13" height="13" viewBox="0 0 16 16"><path d="M4 10l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="tree-filter"><input id="treeFilter" type="text" placeholder="筛选知识点…" spellcheck="false"></div>
+        <div class="tree" id="tree" role="tree" aria-label="课程大纲"></div>
+      </section>
+
+      <!-- 搜索 -->
+      <section class="view hidden" id="view-search">
+        <div class="view-head"><span>搜索 · 提问</span></div>
+        <div class="search-body">
+          <div class="search-box">
+            <input id="searchInput" type="text" placeholder="搜知识点 / 直接问一句话，例如「快排怎么分区」" spellcheck="false">
+            <button id="searchBtn">搜索</button>
+          </div>
+          <div class="search-tip">本地全文检索，离线可用 · 支持 Ctrl+Shift+F 聚焦</div>
+          <div class="qa-suggest" id="qaSuggest"></div>
+          <div class="search-results" id="searchResults"></div>
+        </div>
+      </section>
+
+      <!-- 练习题 -->
+      <section class="view hidden" id="view-exercises">
+        <div class="view-head"><span>练习题</span></div>
+        <div class="tree" id="exTree" role="tree" aria-label="练习题"></div>
+      </section>
+
+      <!-- 进度 -->
+      <section class="view hidden" id="view-progress">
+        <div class="view-head"><span>学习进度 · 路线</span></div>
+        <div class="progress-body" id="progressBody"></div>
+      </section>
+
+      <!-- 环境自检 -->
+      <section class="view hidden" id="view-env">
+        <div class="view-head"><span>环境自检</span>
+          <div class="view-head-actions">
+            <button class="icon-btn sm" id="btnEnvRerun" title="重新检测">
+              <svg width="13" height="13" viewBox="0 0 16 16"><path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.6V5h-2.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="env-body" id="envBody"></div>
+      </section>
+
+      <!-- 设置 -->
+      <section class="view hidden" id="view-settings">
+        <div class="view-head"><span>设置</span></div>
+        <div class="settings-body">
+          <label class="set-row"><span>字号</span><input id="setFontSize" type="range" min="11" max="20" value="13"><b id="setFontSizeVal">13</b></label>
+          <label class="set-row"><span>连字/行高</span>
+            <select id="setLineHeight">
+              <option value="20">紧凑 20px</option>
+              <option value="22" selected>标准 22px</option>
+              <option value="24">宽松 24px</option>
+            </select>
+          </label>
+          <label class="set-row"><span>教程面板</span>
+            <select id="setLessonPanel">
+              <option value="right" selected>右侧</option>
+              <option value="hidden">隐藏</option>
+            </select>
+          </label>
+          <div class="set-block">
+            <div class="set-label">AI 辅助改错 <span class="set-optional">可选 · 默认关闭</span></div>
+            <p class="set-note">不填任何东西也能正常用本程序——离线诊断才是主力。填了之后，编译报错或答案对不上时，可以让模型针对<b>这一次</b>的问题讲清楚原因和最小改法。<br>Key 只存在本机浏览器（localStorage），请求由本地服务直连服务商，不经任何中转。</p>
+            <label class="set-row"><span>服务商</span>
+              <select id="aiProvider"></select>
+            </label>
+            <label class="set-row"><span>接口地址</span>
+              <input id="aiBase" class="set-input" type="text" spellcheck="false" placeholder="https://api.deepseek.com/v1">
+            </label>
+            <label class="set-row"><span>API Key</span>
+              <input id="aiKey" class="set-input" type="password" spellcheck="false" placeholder="sk-... 没有可以留空">
+            </label>
+            <label class="set-row"><span>模型</span>
+              <input id="aiModel" class="set-input" type="text" spellcheck="false" placeholder="deepseek-chat">
+            </label>
+            <div class="ai-actions">
+              <button class="btn" id="btnAiTest">测试连接</button>
+              <button class="btn ghost" id="btnAiClear">清除 Key</button>
+            </div>
+            <div class="ai-status" id="aiStatus">尚未配置（AI 功能不可用，其它功能不受影响）</div>
+          </div>
+          <div class="set-block">
+            <div class="set-label">编译器（gcc）</div>
+            <div class="set-mono" id="gccPath">检测中…</div>
+            <button class="btn" id="btnRecheckGcc">重新检测</button>
+          </div>
+          <div class="set-block">
+            <div class="set-label">数据</div>
+            <button class="btn danger" id="btnResetProgress">清空学习进度与草稿</button>
+          </div>
+          <div class="set-block about">
+            <div class="set-label">关于</div>
+            <p>C-Learn Studio v0.1 — 本地单机运行，不联网也能用。<br>代码通过本机 gcc 真编译真执行，不是模拟输出。</p>
+          </div>
+        </div>
+      </section>
+    </aside>
+    <div class="resizer-v" id="resizerSide"></div>
+
+    <!-- ══════════════ 主工作区 ══════════════ -->
+    <main class="workbench">
+      <div class="editor-row">
+        <div class="editor-col">
+          <div class="tabs" id="tabs"></div>
+          <div class="crumbs">
+            <div class="crumbs-path" id="crumbs"></div>
+            <div class="editor-actions">
+              <button class="btn ghost" id="btnHistory" title="草稿历史：每次运行/编译前都会自动存一份，改崩了能捞回来">
+                <svg width="12" height="12" viewBox="0 0 16 16"><path d="M8 3.4A4.6 4.6 0 1 1 3.4 8H1.8A6.2 6.2 0 1 0 8 1.8z" fill="currentColor" opacity=".85"/><path d="M8 4.6V8l2.4 1.4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>历史
+              </button>
+              <button class="btn viz" id="btnViz" title="可视化演示：按帧回放数据结构的变化 (Ctrl+Shift+V)">
+                <svg width="12" height="12" viewBox="0 0 16 16"><rect x="1.6" y="3" width="4" height="3" rx=".6" fill="currentColor" opacity=".95"/><rect x="6.2" y="3" width="4" height="3" rx=".6" fill="currentColor" opacity=".7"/><rect x="10.8" y="3" width="3.6" height="3" rx=".6" fill="currentColor" opacity=".45"/><path d="M3 8.6v2.2h9.4M11 9.6l1.6 1.2-1.6 1.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>演示
+              </button>
+              <button class="btn" id="btnCompile" title="只编译不运行：查语法错和警告 (Ctrl+F7)">
+                <svg width="12" height="12" viewBox="0 0 16 16"><path d="M2 3.4h7.4l3 3V13H2z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M5 7.4l1.6 1.6L5 10.6M8.2 10.8h2.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>编译
+              </button>
+              <button class="btn run" id="btnRun" title="运行 (Ctrl+Enter)">
+                <svg width="12" height="12" viewBox="0 0 16 16"><path d="M4 2.5l9 5.5-9 5.5z" fill="currentColor"/></svg>运行
+              </button>
+              <button class="btn" id="btnCheck" title="检查答案（练习题）">检查答案</button>
+              <button class="btn ghost" id="btnAi" title="让 AI 分析这次的问题（需要在设置里填自己的 API Key，可跳过）">
+                <svg width="12" height="12" viewBox="0 0 16 16"><path d="M8 1.6l1.5 4.1 4.1 1.5-4.1 1.5L8 12.8 6.5 8.7 2.4 7.2l4.1-1.5z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>AI 改错
+              </button>
+              <button class="btn" id="btnLoadSample" title="把知识点的示例代码载入编辑器">载入示例</button>
+              <button class="btn" id="btnResetCode" title="还原为初始代码">还原</button>
+            </div>
+          </div>
+          <div class="editor-host">
+            <div class="gutter" id="gutter"></div>
+            <div class="code-area" id="codeArea">
+              <div class="active-line" id="activeLine"></div>
+              <div class="trace-line" id="traceLine"></div>
+              <pre class="hl" id="hlPre" aria-hidden="true"><code id="hlCode"></code></pre>
+              <textarea id="codeInput" spellcheck="false" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="resizer-v" id="resizerLesson"></div>
+
+        <aside class="lesson-panel" id="lessonPanel">
+          <div class="lesson-head">
+            <div class="lesson-title" id="lessonTitle">欢迎</div>
+            <div class="lesson-sub" id="lessonSub"></div>
+          </div>
+          <div class="lesson-scroll" id="lessonBody"></div>
+          <div class="lesson-foot">
+            <button class="btn" id="btnDone">标记为已学</button>
+            <button class="btn" id="btnNext">下一个 →</button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- 底部面板高度拖拽条（上下拖动，双击复位） -->
+      <div class="resizer-h" id="resizerPanel" title="上下拖动调整面板高度 · 双击恢复默认"></div>
+
+      <!-- 底部面板 -->
+      <div class="panel" id="panel">
+        <div class="panel-head">
+          <div class="panel-tabs" id="panelTabs">
+            <button class="ptab active" data-ptab="out">输出</button>
+            <button class="ptab" data-ptab="diff">对比 <span class="badge" id="diffBadge">–</span></button>
+            <button class="ptab" data-ptab="problems">问题 <span class="badge" id="probBadge">0</span></button>
+            <button class="ptab" data-ptab="ai">AI 改错 <span class="badge" id="aiBadge">·</span></button>
+            <button class="ptab" data-ptab="viz">演示 <span class="badge" id="vizBadge">0</span></button>
+            <button class="ptab" data-ptab="stdin">标准输入</button>
+          </div>
+          <div class="panel-actions">
+            <span class="run-state" id="runState">就绪</span>
+            <button class="icon-btn sm" id="btnClear" title="清空输出">
+              <svg width="13" height="13" viewBox="0 0 16 16"><path d="M3 4h10M6 4V2.6h4V4M4.5 4l.7 9.4h5.6L11.5 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+            </button>
+            <button class="icon-btn sm" id="btnTogglePanel" title="折叠面板 (Ctrl+`)">
+              <svg width="13" height="13" viewBox="0 0 16 16"><path d="M4 10l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="pview" id="pv-out"><div class="term" id="term"></div></div>
+          <div class="pview hidden" id="pv-diff"><div class="diff-wrap" id="diffBody"></div></div>
+          <div class="pview hidden" id="pv-viz"></div>
+          <div class="pview hidden" id="pv-problems"><div class="problems" id="problems"></div></div>
+          <div class="pview hidden" id="pv-ai"><div class="ai-wrap" id="aiBody"></div></div>
+          <div class="pview hidden" id="pv-stdin">
+            <div class="stdin-hint">程序里用了 scanf / gets 时，把输入内容写在这里（每行一个输入）。检查答案时会自动使用练习题内置输入。</div>
+            <textarea id="stdinInput" spellcheck="false" placeholder="例如：&#10;5&#10;3 1 4 1 5"></textarea>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ══════════════ 状态栏 ══════════════ -->
+  <footer class="statusbar">
+    <div class="sb-left">
+      <button class="sb-item" id="sbBranch" title="大纲">
+        <svg width="12" height="12" viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6" fill="currentColor"/><circle cx="4" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="7" r="1.6" fill="currentColor"/><path d="M4 5.6v4.8M5.6 7h4.8" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        <span id="sbChapter">第一章</span>
+      </button>
+      <span class="sb-item" id="sbPos">行 1, 列 1</span>
+      <span class="sb-item">C11</span>
+      <span class="sb-item">UTF-8</span>
+      <span class="sb-item" id="sbGcc">gcc</span>
+    </div>
+    <div class="sb-right">
+      <span class="sb-item" id="sbProgress">进度 0/0</span>
+      <span class="sb-item" id="sbMsg">就绪</span>
+      <span class="sb-item" id="sbBell">🔔</span>
+    </div>
+  </footer>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<div class="modal-mask hidden" id="modalMask">
+  <div class="modal">
+    <div class="modal-head"><span id="modalTitle">提示</span><button class="icon-btn sm" id="modalClose">✕</button></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="content/ch0-intro.js"></script>
+<script src="content/c-basics.js"></script>
+<script src="content/c-advanced.js"></script>
+<script src="content/ds-linear.js"></script>
+<script src="content/ds-stack-queue.js"></script>
+<script src="content/ds-string-tree.js"></script>
+<script src="content/ds-graph.js"></script>
+<script src="content/ds-search-sort.js"></script>
+<script src="content/exercises.js"></script>
+<script src="content/ex-io.js"></script>
+<script src="content/path.js"></script>
+<script src="content/visuals.js"></script>
+<script src="content/defs.js"></script>
+<script src="js/highlight.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/viz.js"></script>
+<script src="js/diagnose.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
