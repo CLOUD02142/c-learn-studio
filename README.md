@@ -3,7 +3,7 @@
 一个跑在本机的 C 语言 + 数据结构学习台。界面仿 VS Code Dark+，代码**真编译真执行**（调用本机 gcc），
 不联网也能用；联网只是可选项——挂一个自己的 API Key，AI 才会在旁边帮你讲错。
 
-> 本地学习台 · v1.2.1
+> 本地学习台 · v1.2.2
 > 62 个知识点 / 34 道练习题（其中 5 道跑多组用例）/ 19 个可视化演示（334 帧）
 > 62 张白话定义卡 / 30 条报错翻译规则 / 34 条结构约束 / 55 项界面自检
 
@@ -22,7 +22,7 @@ winget install --id BrechtSanders.WinLibs.POSIX.UCRT -e
 
 > 装完**关掉所有窗口重开**（PATH 是启动时读的）。没有 winget 就看 [INSTALL.md](INSTALL.md) 里的手动安装。
 
-1. 从 [**Releases**](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.1.zip`
+1. 从 [**Releases**](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.2.zip`
    （也可以右上角 Code → Download ZIP，或 `git clone`）；
 2. 解压到普通目录（例如 `D:\C-Learn-Studio`，别放 `C:\Program Files`）；
 3. 双击 **`启动.bat`**，浏览器自动打开 `http://127.0.0.1:7788`；

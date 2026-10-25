@@ -67,7 +67,7 @@ gcc --version
 
 ## 第 3 步：解压并启动
 
-1. 从 [Releases](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.0.zip`；
+1. 从 [Releases](https://github.com/CLOUD02142/c-learn-studio/releases/latest) 下载 `c-learn-studio-v1.2.2.zip`；
 2. 解压到任意目录，例如 `D:\C-Learn-Studio`。
    **不要**放在 `C:\Program Files`、也不要直接放在 `C:\` 根目录（需要写权限的地方容易出问题）；
 3. 双击 **`启动.bat`**；
